@@ -15,6 +15,10 @@
  * @return PDO connection to the database
  */
 function database_connection() {
+
+    // pull the global variables into this function's scope
+    global $host, $dbname, $username, $password;
+
  
     // Import the credentials. Adding _DIR_ at the start
     // means PHP will look in the same folder as the current script
