@@ -5,6 +5,7 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
 header('Content-Type: application/json');
 
 // load credentials — API key is stored here, not hardcoded
+require_once 'exception_handler.php';
 require_once __DIR__ . '/database/credentials.php';
 
 // get the request headers
@@ -48,7 +49,6 @@ switch ($endpoint) {
         break;
 
     default:
-        http_response_code(404);
-        echo json_encode("Endpoint not found. Try /actor or /film");
+         throw new Exception("Endpoint not found", 404);
         break;
 }
