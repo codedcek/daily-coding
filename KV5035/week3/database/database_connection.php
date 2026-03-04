@@ -36,10 +36,7 @@ function database_connection() {
  
     } catch( PDOException $e ) {
         // Response code 500 means there was an error on the server
-        http_response_code(500);
-
-        $error = "Database Connection Error: " . $e->getMessage();
-        echo json_encode($error);
+        throw new Exception("Database connection failed", 500);
         
         // Stop execution of the program
         exit();
