@@ -33,22 +33,19 @@ if ($api_key !== $api_key_value) {
 // The rest of the API logic would go here...
 
 // read the URL to work out which endpoint was requested
-$url      = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$endpoint = trim(str_replace('/KV5035/week3/api.php', '', $url), '/');
+$endpoint = parse_url($_SERVER["REQUEST_URI"])['path'];
 
 switch ($endpoint) {
-    case 'actor':
+    case '/KV5035/week3/actors':
         require_once 'actors.php';
         break;
-
-    case 'film':
+    case '/KV5035/week3/films':
         require_once 'films.php';
         break;
-    case 'language':
+    case '/KV5035/week3/language':
         require_once 'language.php';
         break;
-
     default:
-         throw new Exception("Endpoint not found", 404);
+        throw new Exception("Endpoint not found", 404);
         break;
 }

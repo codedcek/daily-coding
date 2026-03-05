@@ -36,9 +36,10 @@ function execute_SQL($sql = "", $param = []) {
         return $data;
  
     } catch( PDOException $e ) {
-        // If there is an exception, output the error message
-        $error = "SQL Error: " . $e->getMessage();
-        echo json_encode($error);
+        // Response code 500 means there was an error on the server
+        throw new Exception("Database connection failed", 500);
+        
+        // Stop execution of the program
         exit();
     }
 }
